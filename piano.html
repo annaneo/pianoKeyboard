@@ -4,6 +4,62 @@
 		<meta charset="UTF-8">
 		<link rel="stylesheet" href="style.css">
 		<title>Piano Keyboard</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+
+
+		<script type="text/javascript">
+
+            function paeCodeForKeyAtIndex(keyIndex, baseOctave, duration) {
+                var octaveIndex = baseOctave + Math.floor(keyIndex / 8);
+                var octaveSigns = [",,,", ",,", ",", "'", "''", "'''", "''''"];
+                var octaveSign = octaveSigns[octaveIndex];
+
+                var notes = [duration + "c",
+                    "x" + duration + "c",
+                    "b" + duration + "d",
+                    duration + "d",
+                    "x" + duration + "d",
+                    "b" + duration + "e",
+                    duration + "e",
+
+                    duration + "f",
+                    "x" + duration + "f",
+                    "b" + duration + "g",
+                    duration + "g",
+                    "x" + duration + "g",
+                    "b" + duration + "a",
+                    duration + "a",
+                    "x" + duration + "a",
+                    "b" + duration + "b",
+                    duration + "b"];
+                var note = notes[keyIndex % 17];
+                note = octaveSign + note;
+                return note;
+            }
+
+
+
+			$( document ).ready(function() {
+
+                var octaveOffset = 3;
+
+                $(".pianokeyboard li").click(function () {
+                    var indexOfKey = $(this).index();
+                    console.log("key " + indexOfKey + " pressed is " + paeCodeForKeyAtIndex(indexOfKey, octaveOffset, 4));
+
+                });
+
+
+                $(".octaveButtonUp").click(function () {
+                    octaveOffset++;
+                    octaveOffset = Math.max()
+                });
+
+			});//end doc ready
+
+		</script>
+
+
 	</head>
 <body>
 	<div class="keyboardcontainer">
