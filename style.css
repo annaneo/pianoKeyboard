@@ -24,6 +24,8 @@ ul.pianokeyboard li {
 	border-color: #000;
 	border-width: 2px 1px 2px 1px;
 	border-radius: 0 0 4px 4px;
+	color: #fff;
+	text-align: center;
 }
 
 ul.pianokeyboard li:first-of-type {
@@ -97,7 +99,7 @@ ul.pianokeyboard li:last-of-type {
 /* Octave switch */
 
 .octaveSwitch{
-	padding: 20px;
+	padding: 10px;
 }
 
 .octaveSwitch button {
