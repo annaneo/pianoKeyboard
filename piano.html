@@ -3,9 +3,11 @@
 	<head>
 		<meta charset="UTF-8">
 		<link rel="stylesheet" href="style.css">
-		<script src="piano.js"></script>
 		<title>Piano Keyboard</title>
+
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+        <script src="http://www.verovio.org/javascript/latest/verovio-toolkit.js"></script>
+        <script src="piano.js"></script>
 
 
 		<script type="text/javascript">
@@ -13,12 +15,18 @@
             var KEYBOARD_OCTAVES = 3;
             var baseOctave = 3;
 
+            var paeCode = "";
 
 			$( document ).ready(function() {
 
+                updatePreview();
+
                 $(".pianokeyboard li").click(function () {
                     var indexOfKey = $(this).index();
-                    console.log("key " + indexOfKey + " pressed is " + paeCodeForKeyAtIndex(indexOfKey, baseOctave, 4));
+                    var paeNote = paeCodeForKeyAtIndex(indexOfKey, baseOctave, 4);
+                    console.log("key " + indexOfKey + " pressed is " + paeNote);
+                    paeCode += paeNote;
+                    updatePreview();
                 });
 
                 $("#raiseOctave").click(function () {
@@ -37,6 +45,13 @@
                 }
 
 			});//end doc ready
+
+            function updatePreview() {
+                var notesSVG = notesSVGForPAECode(paeCode);
+
+                var svgContainerDiv = $('.incipitSVG');
+                svgContainerDiv.html(notesSVG);
+            }
 
 		</script>
 
@@ -104,5 +119,8 @@
 		<button type="button" id="lowerOctave">˂</button>
 		<button type="button" id="raiseOctave">˃</button>
 	</div>
+
+
+<div class="incipitSVG"></div>
 </body>
 </html>
