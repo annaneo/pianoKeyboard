@@ -3,6 +3,7 @@
 	<head>
 		<meta charset="UTF-8">
 		<link rel="stylesheet" href="style.css">
+		<script src="piano.js"></script>
 		<title>Piano Keyboard</title>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
 
@@ -64,43 +65,64 @@
 <body>
 	<div class="keyboardcontainer">
 		<ul class="pianokeyboard">
+		<!-- back keys are seperated to fields sharp and flat; this enables specific input -->
 			<li class="whiteKey"></li>
-			<li class="blackKey"></li>
+			<li class="blackKeySharp">♯</li>
+			<li class="blackKeyFlat"><br/>♭</li>
 			<li class="whiteKey"></li>
-			<li class="blackKey"></li>
-			<li class="whiteKey"></li>
-			<li class="whiteKey"></li>
-			<li class="blackKey"></li>
-			<li class="whiteKey"></li>
-			<li class="blackKey"></li>
-			<li class="whiteKey"></li>
-			<li class="blackKey"></li>
+			<li class="blackKeySharp"></li>
+			<li class="blackKeyFlat"></li>
 			<li class="whiteKey"></li>
 			<li class="whiteKey"></li>
-			<li class="blackKey"></li>
+			<li class="blackKeySharp"></li>
+			<li class="blackKeyFlat"></li>
 			<li class="whiteKey"></li>
-			<li class="blackKey"></li>
+			<li class="blackKeySharp"></li>
+			<li class="blackKeyFlat"></li>
 			<li class="whiteKey"></li>
-			<li class="whiteKey"></li>
-			<li class="blackKey"></li>
-			<li class="whiteKey"></li>
-			<li class="blackKey"></li>
-			<li class="whiteKey"></li>
-			<li class="blackKey"></li>
+			<li class="blackKeySharp"></li>
+			<li class="blackKeyFlat"></li>
 			<li class="whiteKey"></li>
 			<li class="whiteKey"></li>
-			<li class="blackKey"></li>
+			<li class="blackKeySharp"></li>
+			<li class="blackKeyFlat"></li>
 			<li class="whiteKey"></li>
-			<li class="blackKey"></li>
+			<li class="blackKeySharp"></li>
+			<li class="blackKeyFlat"></li>
 			<li class="whiteKey"></li>
 			<li class="whiteKey"></li>
-			<li class="blackKey"></li>
+			<li class="blackKeySharp"></li>
+			<li class="blackKeyFlat"></li>
 			<li class="whiteKey"></li>
-			<li class="blackKey"></li>
+			<li class="blackKeySharp"></li>
+			<li class="blackKeyFlat"></li>
 			<li class="whiteKey"></li>
-			<li class="blackKey"></li>
+			<li class="blackKeySharp"></li>
+			<li class="blackKeyFlat"></li>
+			<li class="whiteKey"></li>
+			<li class="whiteKey"></li>
+			<li class="blackKeySharp"></li>
+			<li class="blackKeyFlat"></li>
+			<li class="whiteKey"></li>
+			<li class="blackKeySharp"></li>
+			<li class="blackKeyFlat"></li>
+			<li class="whiteKey"></li>
+			<li class="whiteKey"></li>
+			<li class="blackKeySharp"></li>
+			<li class="blackKeyFlat"></li>
+			<li class="whiteKey"></li>
+			<li class="blackKeySharp"></li>
+			<li class="blackKeyFlat"></li>
+			<li class="whiteKey"></li>
+			<li class="blackKeySharp"></li>
+			<li class="blackKeyFlat"></li>
 			<li class="whiteKey"></li>
 		</ul>
+	</div>
+	
+	<div class="octaveSwitch">
+		<button type="button" id="lowerOctave">˂</button>
+		<button type="button" id="raiseOctave">˃</button>
 	</div>
 </body>
 </html>

@@ -1,3 +1,8 @@
+body, button{
+	font: 16px Lucida Sans, Trebuchet MS, Tahoma, sans-serif;
+	color: #000;
+}
+
 .keyboardcontainer {
 	width:800px;
 	padding: 20px;
@@ -5,7 +10,7 @@
 
  ul.pianokeyboard {
 	position: relative;
-	height: 100%;
+	height:160px;
 	width: 100%;
 	padding: 0;
 	cursor: pointer;
@@ -19,6 +24,8 @@ ul.pianokeyboard li {
 	border-color: #000;
 	border-width: 2px 1px 2px 1px;
 	border-radius: 0 0 4px 4px;
+	color: #fff;
+	text-align: center;
 }
 
 ul.pianokeyboard li:first-of-type {
@@ -45,22 +52,64 @@ ul.pianokeyboard li:last-of-type {
 	background: #f9f9f9;
 }
 
-.blackKey {
+.blackKeySharp {
 	background: #000;
 	z-index: 10;
 	width: 20px;
-	height: 100px;
+	height: 50px;
 	margin: 0 0 0 -10px;
 }
 
-.blackKey:hover:active {
+.blackKeySharp:hover:active {
 	background: #555;
 }
 
-.blackKey:hover {
-	background: #333;
+.blackKeySharp:hover {
+	background: #444;
 }
 
-.blackKey + .whiteKey {
+.blackKeyFlat {
+	top: 50px;
+	background: #111;
+	z-index: 10;
+	width: 20px;
+	height: 50px;
+	margin: 0 0 0 -10px;
+}
+
+.blackKeyFlat:hover:active {
+	background: #555;
+}
+
+.blackKeyFlat:hover {
+	background: #444;
+}
+
+/* positioning */
+
+.blackKeyFlat + .whiteKey {
 	margin-left: -12px;
 }
+
+.blackKeySharp + .blackKeyFlat{
+	margin-left: -22px;
+}
+
+
+/* Octave switch */
+
+.octaveSwitch{
+	padding: 10px;
+}
+
+.octaveSwitch button {
+	display: inline-block;
+	cursor: pointer;
+	background-color: #fff;
+	margin: 10px;
+	border-style: solid;
+	border-color: #000;
+	padding: 10px;
+	text-align: center;
+	}
+
