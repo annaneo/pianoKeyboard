@@ -1,0 +1,66 @@
+.keyboardcontainer {
+	width:800px;
+	padding: 20px;
+}
+
+ ul.pianokeyboard {
+	position: relative;
+	height: 100%;
+	width: 100%;
+	padding: 0;
+	cursor: pointer;
+	list-style-type: none;
+}
+
+ul.pianokeyboard li {
+	position: relative;
+	float: left;
+	border-style: solid;
+	border-color: #000;
+	border-width: 2px 1px 2px 1px;
+	border-radius: 0 0 4px 4px;
+}
+
+ul.pianokeyboard li:first-of-type {
+	border-left-width: 2px;
+	border-top-left-radius: 4px;
+}
+
+ul.pianokeyboard li:last-of-type {
+	border-right-width: 2px;
+	border-top-right-radius: 4px;
+}
+
+.whiteKey {
+	width: 30px;
+	height: 150px;
+	background: #fff;
+}
+
+.whiteKey:hover:active {
+	background: #eee;
+}
+
+.whiteKey:hover {
+	background: #f9f9f9;
+}
+
+.blackKey {
+	background: #000;
+	z-index: 10;
+	width: 20px;
+	height: 100px;
+	margin: 0 0 0 -10px;
+}
+
+.blackKey:hover:active {
+	background: #555;
+}
+
+.blackKey:hover {
+	background: #333;
+}
+
+.blackKey + .whiteKey {
+	margin-left: -12px;
+}
