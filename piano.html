@@ -10,51 +10,31 @@
 
 		<script type="text/javascript">
 
-            function paeCodeForKeyAtIndex(keyIndex, baseOctave, duration) {
-                var octaveIndex = baseOctave + Math.floor(keyIndex / 8);
-                var octaveSigns = [",,,", ",,", ",", "'", "''", "'''", "''''"];
-                var octaveSign = octaveSigns[octaveIndex];
-
-                var notes = [duration + "c",
-                    "x" + duration + "c",
-                    "b" + duration + "d",
-                    duration + "d",
-                    "x" + duration + "d",
-                    "b" + duration + "e",
-                    duration + "e",
-
-                    duration + "f",
-                    "x" + duration + "f",
-                    "b" + duration + "g",
-                    duration + "g",
-                    "x" + duration + "g",
-                    "b" + duration + "a",
-                    duration + "a",
-                    "x" + duration + "a",
-                    "b" + duration + "b",
-                    duration + "b"];
-                var note = notes[keyIndex % 17];
-                note = octaveSign + note;
-                return note;
-            }
-
+            var KEYBOARD_OCTAVES = 3;
+            var baseOctave = 3;
 
 
 			$( document ).ready(function() {
 
-                var octaveOffset = 3;
-
                 $(".pianokeyboard li").click(function () {
                     var indexOfKey = $(this).index();
-                    console.log("key " + indexOfKey + " pressed is " + paeCodeForKeyAtIndex(indexOfKey, octaveOffset, 4));
-
+                    console.log("key " + indexOfKey + " pressed is " + paeCodeForKeyAtIndex(indexOfKey, baseOctave, 4));
                 });
 
-
-                $(".octaveButtonUp").click(function () {
-                    octaveOffset++;
-                    octaveOffset = Math.max()
+                $("#raiseOctave").click(function () {
+                    baseOctave = Math.min(baseOctave + 1, MAX_OCTAVES - KEYBOARD_OCTAVES);
                 });
+
+                $("#lowerOctave").click(function () {
+                    baseOctave = Math.max(baseOctave - 1, 0);
+                });
+
+                function setChangeOctaveButtonsEnabled() {
+                    var isMax = baseOctave == MAX_OCTAVES;
+                    var isMin = baseOctave == 0;
+                    $("#raiseOctave").prop('disabled', isMax);
+                    $("#lowerOctave").prop('disabled', isMin );
+                }
 
 			});//end doc ready
 
