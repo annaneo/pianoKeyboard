@@ -16,13 +16,13 @@ var octaves = {
 
 var MAX_OCTAVES =  octaves.LINE4;
 var KEYS_PER_OCTAVE = 17;
-var _keyboardOctaves = 3;
+var _displayedOctaves = 3;
 var _startOctave = 3;
 
 var verovioToolkit = new verovio.toolkit();
 
-function keyboardOctaves() {
-    return _keyboardOctaves
+function numberOfDisplayedOctaves() {
+    return _displayedOctaves
 }
 
 function paeCodeForKeyAtIndex(keyIndex, baseOctave, duration) {
@@ -90,12 +90,12 @@ function htmlForKeyboardWithOctaves(numberOfOctaves, startOctave) {
     if (typeof(startOctave)==='undefined') startOctave = octaves.LINE1
 
     //back keys are seperated to fields sharp and flat; this enables specific input
-    _keyboardOctaves = limitToRange(numberOfOctaves, 0, MAX_OCTAVES)
+    _displayedOctaves = limitToRange(numberOfOctaves, 0, MAX_OCTAVES)
     _startOctave = limitToRange(startOctave, octaves.CONTRA, octaves.LINE3)
 
     var html = '<ul class="pianokeyboard">'
 
-    for (var i = 0; i < _keyboardOctaves; i++) {
+    for (var i = 0; i < _displayedOctaves; i++) {
         html += '\
                 <li class="whiteKey"></li>\
                 <li class="blackKeySharp">♯</li>\
@@ -130,7 +130,7 @@ function bindKeysToFunction(callback) {
     });
 
     $("#raiseOctave").click(function () {
-        _startOctave = Math.min(_startOctave + 1, MAX_OCTAVES - keyboardOctaves())
+        _startOctave = Math.min(_startOctave + 1, MAX_OCTAVES - numberOfDisplayedOctaves())
     })
 
     $("#lowerOctave").click(function () {
