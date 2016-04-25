@@ -12,44 +12,20 @@
 
 		<script type="text/javascript">
 
-            var KEYBOARD_OCTAVES = 3;
-            var baseOctave = 3;
-
-            var paeCode = "";
 
 			$( document ).ready(function() {
 
-				$(".keyboardcontainer").html(pianoHTML(3))
+				$(".keyboardcontainer").html(htmlForKeyboardWithOctaves(3))
+				bindKeysToFunction(updatePreview)
 
-                updatePreview()
+			})
 
-                $(".pianokeyboard li").click(function () {
-                    var indexOfKey = $(this).index()
-                    var paeNote = paeCodeForKeyAtIndex(indexOfKey, baseOctave, 4)
-                    console.log("key " + indexOfKey + " pressed is " + paeNote)
-                    paeCode += paeNote
-                    updatePreview()
-                });
+			var paeCode = "";
+            function updatePreview(paeNote) {
+				console.log("key pressed is " + paeNote)
+				paeCode += paeNote
 
-                $("#raiseOctave").click(function () {
-                    baseOctave = Math.min(baseOctave + 1, MAX_OCTAVES - KEYBOARD_OCTAVES)
-                })
-
-                $("#lowerOctave").click(function () {
-                    baseOctave = Math.max(baseOctave - 1, 0)
-                })
-
-                function setChangeOctaveButtonsEnabled() {
-					var isMax = baseOctave == MAX_OCTAVES
-					var isMin = baseOctave == 0
-					$("#raiseOctave").prop('disabled', isMax)
-					$("#lowerOctave").prop('disabled', isMin)
-				}
-
-			})//end doc ready
-
-            function updatePreview() {
-                var notesSVG = notesSVGForPAECode(paeCode)
+                var notesSVG = svgNotesForPlaineEasieCode(paeCode)
 
                 var svgContainerDiv = $('.incipitSVG')
                 svgContainerDiv.html(notesSVG)

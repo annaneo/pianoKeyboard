@@ -3,10 +3,27 @@
  */
 
 
-var MAX_OCTAVES =  6;
+var octaves = {
+    CONTRA : 0,
+    GREAT : 1,
+    SMALL : 2,
+    LINE1 : 3,
+    LINE2 : 4,
+    LINE3 : 5,
+    LINE4 : 6
+}
+
+
+var MAX_OCTAVES =  octaves.LINE4;
 var KEYS_PER_OCTAVE = 17;
+var _keyboardOctaves = 3;
+var _startOctave = 3;
 
 var verovioToolkit = new verovio.toolkit();
+
+function keyboardOctaves() {
+    return _keyboardOctaves
+}
 
 function paeCodeForKeyAtIndex(keyIndex, baseOctave, duration) {
     var octaveOffset = Math.floor(keyIndex / KEYS_PER_OCTAVE)
@@ -37,7 +54,7 @@ function paeCodeForKeyAtIndex(keyIndex, baseOctave, duration) {
     return note
 }
 
-function notesSVGForPAECode(paeCode) {
+function svgNotesForPlaineEasieCode(paeCode) {
     var data = "@clef:" + "G-2" + "\n"
     data += "@keysig:" + " " + "\n"
     data += "@timesig:" + " " + "\n"
@@ -68,12 +85,17 @@ function notesSVGForPAECode(paeCode) {
 }
 
 
-function pianoHTML(numberOfOctaves) {
+function htmlForKeyboardWithOctaves(numberOfOctaves, startOctave) {
+    if (typeof(numberOfOctaves)==='undefined') numberOfOctaves = 3
+    if (typeof(startOctave)==='undefined') startOctave = octaves.LINE1
+
     //back keys are seperated to fields sharp and flat; this enables specific input
+    _keyboardOctaves = limitToRange(numberOfOctaves, 0, MAX_OCTAVES)
+    _startOctave = limitToRange(startOctave, octaves.CONTRA, octaves.LINE3)
 
     var html = '<ul class="pianokeyboard">'
 
-    for (var i = 0; i < numberOfOctaves; i++) {
+    for (var i = 0; i < _keyboardOctaves; i++) {
         html += '\
                 <li class="whiteKey"></li>\
                 <li class="blackKeySharp">♯</li>\
@@ -95,4 +117,36 @@ function pianoHTML(numberOfOctaves) {
     }
     html +=   '</ul>'
     return html
+}
+
+
+
+function bindKeysToFunction(callback) {
+
+    $(".pianokeyboard li").click(function () {
+        var indexOfKey = $(this).index()
+        var paeNote = paeCodeForKeyAtIndex(indexOfKey, _startOctave, 4)
+        callback(paeNote)
+    });
+
+    $("#raiseOctave").click(function () {
+        _startOctave = Math.min(_startOctave + 1, MAX_OCTAVES - keyboardOctaves())
+    })
+
+    $("#lowerOctave").click(function () {
+        _startOctave = Math.max(_startOctave - 1, 0)
+    })
+
+    function setChangeOctaveButtonsEnabled() {
+        var isMax = _startOctave == MAX_OCTAVES
+        var isMin = _startOctave == 0
+        $("#raiseOctave").prop('disabled', isMax)
+        $("#lowerOctave").prop('disabled', isMin)
+    }
+    
+}
+
+
+function limitToRange(number, min, max) {
+    return Math.min(Math.max(min, number), max)
 }
