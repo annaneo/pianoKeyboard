@@ -19,38 +19,40 @@
 
 			$( document ).ready(function() {
 
-                updatePreview();
+				$(".keyboardcontainer").html(pianoHTML(3))
+
+                updatePreview()
 
                 $(".pianokeyboard li").click(function () {
-                    var indexOfKey = $(this).index();
-                    var paeNote = paeCodeForKeyAtIndex(indexOfKey, baseOctave, 4);
-                    console.log("key " + indexOfKey + " pressed is " + paeNote);
-                    paeCode += paeNote;
-                    updatePreview();
+                    var indexOfKey = $(this).index()
+                    var paeNote = paeCodeForKeyAtIndex(indexOfKey, baseOctave, 4)
+                    console.log("key " + indexOfKey + " pressed is " + paeNote)
+                    paeCode += paeNote
+                    updatePreview()
                 });
 
                 $("#raiseOctave").click(function () {
-                    baseOctave = Math.min(baseOctave + 1, MAX_OCTAVES - KEYBOARD_OCTAVES);
-                });
+                    baseOctave = Math.min(baseOctave + 1, MAX_OCTAVES - KEYBOARD_OCTAVES)
+                })
 
                 $("#lowerOctave").click(function () {
-                    baseOctave = Math.max(baseOctave - 1, 0);
-                });
+                    baseOctave = Math.max(baseOctave - 1, 0)
+                })
 
                 function setChangeOctaveButtonsEnabled() {
-                    var isMax = baseOctave == MAX_OCTAVES;
-                    var isMin = baseOctave == 0;
-                    $("#raiseOctave").prop('disabled', isMax);
-                    $("#lowerOctave").prop('disabled', isMin );
-                }
+					var isMax = baseOctave == MAX_OCTAVES
+					var isMin = baseOctave == 0
+					$("#raiseOctave").prop('disabled', isMax)
+					$("#lowerOctave").prop('disabled', isMin)
+				}
 
-			});//end doc ready
+			})//end doc ready
 
             function updatePreview() {
-                var notesSVG = notesSVGForPAECode(paeCode);
+                var notesSVG = notesSVGForPAECode(paeCode)
 
-                var svgContainerDiv = $('.incipitSVG');
-                svgContainerDiv.html(notesSVG);
+                var svgContainerDiv = $('.incipitSVG')
+                svgContainerDiv.html(notesSVG)
             }
 
 		</script>
@@ -59,60 +61,7 @@
 	</head>
 <body>
 	<div class="keyboardcontainer">
-		<ul class="pianokeyboard">
-		<!-- back keys are seperated to fields sharp and flat; this enables specific input -->
-			<li class="whiteKey"></li>
-			<li class="blackKeySharp">♯</li>
-			<li class="blackKeyFlat"><br/>♭</li>
-			<li class="whiteKey"></li>
-			<li class="blackKeySharp"></li>
-			<li class="blackKeyFlat"></li>
-			<li class="whiteKey"></li>
-			<li class="whiteKey"></li>
-			<li class="blackKeySharp"></li>
-			<li class="blackKeyFlat"></li>
-			<li class="whiteKey"></li>
-			<li class="blackKeySharp"></li>
-			<li class="blackKeyFlat"></li>
-			<li class="whiteKey"></li>
-			<li class="blackKeySharp"></li>
-			<li class="blackKeyFlat"></li>
-			<li class="whiteKey"></li>
-			<li class="whiteKey"></li>
-			<li class="blackKeySharp"></li>
-			<li class="blackKeyFlat"></li>
-			<li class="whiteKey"></li>
-			<li class="blackKeySharp"></li>
-			<li class="blackKeyFlat"></li>
-			<li class="whiteKey"></li>
-			<li class="whiteKey"></li>
-			<li class="blackKeySharp"></li>
-			<li class="blackKeyFlat"></li>
-			<li class="whiteKey"></li>
-			<li class="blackKeySharp"></li>
-			<li class="blackKeyFlat"></li>
-			<li class="whiteKey"></li>
-			<li class="blackKeySharp"></li>
-			<li class="blackKeyFlat"></li>
-			<li class="whiteKey"></li>
-			<li class="whiteKey"></li>
-			<li class="blackKeySharp"></li>
-			<li class="blackKeyFlat"></li>
-			<li class="whiteKey"></li>
-			<li class="blackKeySharp"></li>
-			<li class="blackKeyFlat"></li>
-			<li class="whiteKey"></li>
-			<li class="whiteKey"></li>
-			<li class="blackKeySharp"></li>
-			<li class="blackKeyFlat"></li>
-			<li class="whiteKey"></li>
-			<li class="blackKeySharp"></li>
-			<li class="blackKeyFlat"></li>
-			<li class="whiteKey"></li>
-			<li class="blackKeySharp"></li>
-			<li class="blackKeyFlat"></li>
-			<li class="whiteKey"></li>
-		</ul>
+
 	</div>
 	
 	<div class="octaveSwitch">
