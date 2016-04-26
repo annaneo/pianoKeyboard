@@ -1,31 +1,27 @@
-body, button{
-	font: 16px Lucida Sans, Trebuchet MS, Tahoma, sans-serif;
-	color: #000;
-}
-
 .DA-Keyboardcontainer {
-	width:1000px;
-	padding: 20px;
+    font: 16px Lucida Sans, Trebuchet MS, Tahoma, sans-serif;
+    color: #000;
+    padding: 20px;
 }
 
- ul.DA-PianoKeyboard {
-	position: relative;
-     display: inline-block;
-	height:160px;
-	padding: 0;
-	cursor: pointer;
-	list-style-type: none;
+ul.DA-PianoKeyboard {
+    position: relative;
+    display: inline-block;
+    height:160px;
+    padding: 0;
+    cursor: pointer;
+    list-style-type: none;
 }
 
 ul.DA-PianoKeyboard li {
-	position: relative;
-	float: left;
-	border-style: solid;
-	border-color: #000;
-	border-width: 2px 1px 2px 1px;
-	border-radius: 0 0 4px 4px;
-	color: #ccc;
-	text-align: center;
+    position: relative;
+    float: left;
+    border-style: solid;
+    border-color: #000;
+    border-width: 2px 1px 2px 1px;
+    border-radius: 0 0 4px 4px;
+    color: #ccc;
+    text-align: center;
 }
 
 .whiteKey>p {
@@ -33,94 +29,101 @@ ul.DA-PianoKeyboard li {
 }
 
 ul.DA-PianoKeyboard li:first-of-type {
-	border-left-width: 2px;
-	border-top-left-radius: 4px;
+    border-left-width: 2px;
+    border-top-left-radius: 4px;
 }
 
 ul.DA-PianoKeyboard li:last-of-type {
-	border-right-width: 2px;
-	border-top-right-radius: 4px;
+    border-right-width: 2px;
+    border-top-right-radius: 4px;
 }
 
 .whiteKey {
-	width: 30px;
-	height: 150px;
-	background: #fff;
+    width: 30px;
+    height: 150px;
+    background: #fff;
 }
 
 .whiteKey:hover:active {
-	background: #eee;
+    background: #eee;
 }
 
 .whiteKey:hover {
-	background: #f9f9f9;
+    background: #f9f9f9;
 }
 
 .blackKeySharp {
-	background: #000;
-	z-index: 10;
-	width: 20px;
-	height: 50px;
-	margin: 0 0 0 -10px;
+    background: #000;
+    z-index: 10;
+    width: 20px;
+    height: 50px;
+    margin: 0 0 0 -10px;
 }
 
 .blackKeySharp:hover:active {
-	background: #555;
+    background: #555;
 }
 
 .blackKeySharp:hover {
-	background: #444;
+    background: #444;
 }
 
 .blackKeyFlat {
-	top: 50px;
-	background: #111;
-	z-index: 10;
-	width: 20px;
-	height: 50px;
-	margin: 0 0 0 -10px;
+    top: 50px;
+    background: #111;
+    z-index: 10;
+    width: 20px;
+    height: 50px;
+    margin: 0 0 0 -10px;
 }
 
 .blackKeyFlat:hover:active {
-	background: #555;
+    background: #555;
 }
 
 .blackKeyFlat:hover {
-	background: #444;
+    background: #444;
 }
 
 /* positioning */
 
 .blackKeyFlat + .whiteKey {
-	margin-left: -12px;
+    margin-left: -12px;
 }
 
 .blackKeySharp + .blackKeyFlat{
-	margin-left: -22px;
+    margin-left: -22px;
 }
 
 
-/* Octave switch */
-
-.octaveSwitch{
-	padding: 10px;
-}
+/* Octave shift */
 
 .DA-Keyboardcontainer button {
-	display: inline-block;
-	cursor: pointer;
-	background-color: #fff;
-	margin: 10px;
-	border-style: none;
-	border-color: #000;
-	padding: 10px;
-	text-align: center;
+    display: inline-block;
+    cursor: pointer;
+    background-color: #fff;
+    margin: 10px;
+    border-style: none;
+    border-color: #000;
+    padding: 10px;
+    text-align: center;
     vertical-align: top;
     font-size: 50px;
     height: 160px;
     color: #999;
-	}
+}
+
 .DA-Keyboardcontainer button:hover {
     background-color: #eeeeee;
+}
+
+
+.DA-Keyboardcontainer button:disabled {
+    color: #fff;
+    cursor: default;
+}
+
+.DA-Keyboardcontainer button:disabled:hover {
+    background-color: #fff;
 }
 

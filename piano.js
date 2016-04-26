@@ -92,7 +92,7 @@ function htmlForKeyboardWithOctaves(numberOfOctaves, startOctave, showLabels, wi
     if (typeof(withShiftButtons)==='undefined') withShiftButtons = true
 
     //back keys are seperated to fields sharp and flat; this enables specific input
-    _displayedOctaves = limitToRange(numberOfOctaves, 0, MAX_OCTAVES)
+    _displayedOctaves = limitToRange(numberOfOctaves, 1, MAX_OCTAVES)
     _startOctave = limitToRange(startOctave, octaves.C1, octaves.C6)
 
     var currentOctave = _startOctave
@@ -134,9 +134,9 @@ function htmlForKeyboardWithOctaves(numberOfOctaves, startOctave, showLabels, wi
     if (withShiftButtons) {
         html = '\
         <div class="DA-Keyboardcontainer">\n\
-            <button type="button" id="lowerOctave">˂</button>\n'
+            <button type="button" id="lowerOctave" onclick="lowerOctave()">˂</button>\n'
                 + html + '\n\
-            <button type="button" id="raiseOctave">˃</button>\n\
+            <button type="button" id="raiseOctave" onclick="raiseOctave()">˃</button>\n\
         </div>\n'
     }
     return html
@@ -149,26 +149,28 @@ function bindKeysToFunction(callback) {
     $(".DA-PianoKeyboard li").click(function () {
         var indexOfKey = $(this).index()
         var paeNote = paeCodeForKeyAtIndex(indexOfKey, _startOctave, 4)
-        callback(paeNote)
-    });
-
-    $("#raiseOctave").click(function () {
-        _startOctave = Math.min(_startOctave + 1, MAX_OCTAVES - numberOfDisplayedOctaves() + 1)
-        updateOctaveLabels()
+        callback(this, paeNote)
     })
-
-    $("#lowerOctave").click(function () {
-        _startOctave = Math.max(_startOctave - 1, 0)
-        updateOctaveLabels()
-    })
-
-    function setChangeOctaveButtonsEnabled() {
-        var isMax = _startOctave == MAX_OCTAVES
-        var isMin = _startOctave == 0
-        $("#raiseOctave").prop('disabled', isMax)
-        $("#lowerOctave").prop('disabled', isMin)
-    }
     
+}
+
+function raiseOctave() {
+    _startOctave = Math.min(_startOctave + 1, MAX_OCTAVES - numberOfDisplayedOctaves() + 1)
+    updateOctaveLabels()
+    updateShiftOctaveButtonsEnabled()
+}
+
+function lowerOctave() {
+    _startOctave = Math.max(_startOctave - 1, 0)
+    updateOctaveLabels()
+    updateShiftOctaveButtonsEnabled()
+}
+
+function updateShiftOctaveButtonsEnabled() {
+    var isMax = _startOctave == MAX_OCTAVES - _displayedOctaves + 1
+    var isMin = _startOctave == 0
+    $("#raiseOctave").prop('disabled', isMax)
+    $("#lowerOctave").prop('disabled', isMin)
 }
 
 function updateOctaveLabels(){

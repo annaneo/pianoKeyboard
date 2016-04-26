@@ -15,14 +15,12 @@
 
 			$( document ).ready(function() {
 				var keyboardHTML = htmlForKeyboardWithOctaves(3, octaves.C4, true, true)
-				console.log(keyboardHTML)
 				$(".keyboardContainer").html(keyboardHTML)
 				bindKeysToFunction(updatePreview)
-
 			})
 
 			var paeCode = "";
-            function updatePreview(paeNote) {
+            function updatePreview(sender, paeNote) {
 				console.log("key pressed is " + paeNote)
 				paeCode += paeNote
 
