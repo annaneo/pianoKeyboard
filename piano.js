@@ -4,13 +4,13 @@
 
 
 var octaves = {
-    C1 : 0,
-    C2 : 1,
-    C3 : 2,
-    C4 : 3,
-    C5 : 4,
-    C6 : 5,
-    C7 : 6
+    C1 : 0, //,,,
+    C2 : 1, //,,
+    C3 : 2, //,
+    C4 : 3, //'
+    C5 : 4, //''
+    C6 : 5, //'''
+    C7 : 6  //''''
 }
 
 
@@ -141,11 +141,13 @@ function bindKeysToFunction(callback) {
     });
 
     $("#raiseOctave").click(function () {
-        _startOctave = Math.min(_startOctave + 1, MAX_OCTAVES - numberOfDisplayedOctaves())
+        _startOctave = Math.min(_startOctave + 1, MAX_OCTAVES - numberOfDisplayedOctaves() + 1)
+        updateOctaveLabels()
     })
 
     $("#lowerOctave").click(function () {
         _startOctave = Math.max(_startOctave - 1, 0)
+        updateOctaveLabels()
     })
 
     function setChangeOctaveButtonsEnabled() {
@@ -157,6 +159,13 @@ function bindKeysToFunction(callback) {
     
 }
 
+function updateOctaveLabels(){
+    $('.whiteKey>p').each(function(i, domLabel) {
+        var label = $(domLabel)
+        var currentOctave = _startOctave + 1 + i
+        label.text("C" + currentOctave)
+    })
+}
 
 function limitToRange(number, min, max) {
     return Math.min(Math.max(min, number), max)
