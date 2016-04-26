@@ -24,8 +24,12 @@ ul.pianokeyboard li {
 	border-color: #000;
 	border-width: 2px 1px 2px 1px;
 	border-radius: 0 0 4px 4px;
-	color: #fff;
+	color: #ccc;
 	text-align: center;
+}
+
+.whiteKey>p {
+    margin-top: 120px;
 }
 
 ul.pianokeyboard li:first-of-type {

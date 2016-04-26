@@ -4,17 +4,17 @@
 
 
 var octaves = {
-    CONTRA : 0,
-    GREAT : 1,
-    SMALL : 2,
-    LINE1 : 3,
-    LINE2 : 4,
-    LINE3 : 5,
-    LINE4 : 6
+    C1 : 0,
+    C2 : 1,
+    C3 : 2,
+    C4 : 3,
+    C5 : 4,
+    C6 : 5,
+    C7 : 6
 }
 
 
-var MAX_OCTAVES =  octaves.LINE4;
+var MAX_OCTAVES =  octaves.C7;
 var KEYS_PER_OCTAVE = 17;
 var _displayedOctaves = 3;
 var _startOctave = 3;
@@ -78,42 +78,53 @@ function svgNotesForPlaineEasieCode(paeCode) {
         border: 0,
         scale: scale,
         adjustPageHeight: 1
-    });
+    })
 
     var notesSVG = verovioToolkit.renderData(data, options);
     return notesSVG
 }
 
 
-function htmlForKeyboardWithOctaves(numberOfOctaves, startOctave) {
+function htmlForKeyboardWithOctaves(numberOfOctaves, startOctave, showLabels) {
     if (typeof(numberOfOctaves)==='undefined') numberOfOctaves = 3
-    if (typeof(startOctave)==='undefined') startOctave = octaves.LINE1
+    if (typeof(startOctave)==='undefined') startOctave = octaves.C4
+    if (typeof(showLabels)==='undefined') showLabels = true
 
     //back keys are seperated to fields sharp and flat; this enables specific input
     _displayedOctaves = limitToRange(numberOfOctaves, 0, MAX_OCTAVES)
-    _startOctave = limitToRange(startOctave, octaves.CONTRA, octaves.LINE3)
+    _startOctave = limitToRange(startOctave, octaves.C1, octaves.C6)
 
+    var currentOctave = _startOctave
     var html = '<ul class="pianokeyboard">'
-
     for (var i = 0; i < _displayedOctaves; i++) {
+        if (showLabels) {
+            html += '\
+            <li class="whiteKey"><p>C' + (currentOctave + 1) + '</p></li>\
+            <li class="blackKeySharp"><p>♯</p></li>\
+            <li class="blackKeyFlat"><p>♭</p></li>'
+        } else {
+            html += '\
+            <li class="whiteKey"></li>\
+            <li class="blackKeySharp"></li>\
+            <li class="blackKeyFlat"></li>'
+        }
+
         html += '\
-                <li class="whiteKey"></li>\
-                <li class="blackKeySharp">♯</li>\
-                <li class="blackKeyFlat"><br/>♭</li>\
-                <li class="whiteKey"></li>\
-                <li class="blackKeySharp"></li>\
-                <li class="blackKeyFlat"></li>\
-                <li class="whiteKey"></li>\
-                <li class="whiteKey"></li>\
-                <li class="blackKeySharp"></li>\
-                <li class="blackKeyFlat"></li>\
-                <li class="whiteKey"></li>\
-                <li class="blackKeySharp"></li>\
-                <li class="blackKeyFlat"></li>\
-                <li class="whiteKey"></li>\
-                <li class="blackKeySharp"></li>\
-                <li class="blackKeyFlat"></li>\
-                <li class="whiteKey"></li>'
+        <li class="whiteKey"></li>\
+        <li class="blackKeySharp"></li>\
+        <li class="blackKeyFlat"></li>\
+        <li class="whiteKey"></li>\
+        <li class="whiteKey"></li>\
+        <li class="blackKeySharp"></li>\
+        <li class="blackKeyFlat"></li>\
+        <li class="whiteKey"></li>\
+        <li class="blackKeySharp"></li>\
+        <li class="blackKeyFlat"></li>\
+        <li class="whiteKey"></li>\
+        <li class="blackKeySharp"></li>\
+        <li class="blackKeyFlat"></li>\
+        <li class="whiteKey"></li>'
+        currentOctave++
     }
     html +=   '</ul>'
     return html
