@@ -4,14 +4,14 @@ body, button{
 }
 
 .keyboardcontainer {
-	width:800px;
+	width:1000px;
 	padding: 20px;
 }
 
  ul.pianokeyboard {
 	position: relative;
+     display: inline-block;
 	height:160px;
-	width: 100%;
 	padding: 0;
 	cursor: pointer;
 	list-style-type: none;
@@ -106,14 +106,21 @@ ul.pianokeyboard li:last-of-type {
 	padding: 10px;
 }
 
-.octaveSwitch button {
+.keyboardcontainer button {
 	display: inline-block;
 	cursor: pointer;
 	background-color: #fff;
 	margin: 10px;
-	border-style: solid;
+	border-style: none;
 	border-color: #000;
 	padding: 10px;
 	text-align: center;
+    vertical-align: top;
+    font-size: 50px;
+    height: 160px;
+    color: #999;
 	}
+.keyboardcontainer button:hover {
+    background-color: #eeeeee;
+}
 

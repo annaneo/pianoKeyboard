@@ -14,8 +14,9 @@
 
 
 			$( document ).ready(function() {
-
-				$(".keyboardcontainer").html(htmlForKeyboardWithOctaves(3))
+				var keyboardHTML = htmlForKeyboardWithOctaves(3, octaves.C4, true, true)
+				console.log(keyboardHTML)
+				$(".container").html(keyboardHTML)
 				bindKeysToFunction(updatePreview)
 
 			})
@@ -36,16 +37,10 @@
 
 	</head>
 <body>
-	<div class="keyboardcontainer">
+	<div class="container">
 
 	</div>
-	
-	<div class="octaveSwitch">
-		<button type="button" id="lowerOctave">˂</button>
-		<button type="button" id="raiseOctave">˃</button>
-	</div>
 
-
-<div class="incipitSVG"></div>
+    <div class="incipitSVG"></div>
 </body>
 </html>

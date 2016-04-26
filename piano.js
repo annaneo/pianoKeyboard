@@ -85,7 +85,7 @@ function svgNotesForPlaineEasieCode(paeCode) {
 }
 
 
-function htmlForKeyboardWithOctaves(numberOfOctaves, startOctave, showLabels) {
+function htmlForKeyboardWithOctaves(numberOfOctaves, startOctave, showLabels, withShiftButtons) {
     if (typeof(numberOfOctaves)==='undefined') numberOfOctaves = 3
     if (typeof(startOctave)==='undefined') startOctave = octaves.C4
     if (typeof(showLabels)==='undefined') showLabels = true
@@ -126,7 +126,15 @@ function htmlForKeyboardWithOctaves(numberOfOctaves, startOctave, showLabels) {
         <li class="whiteKey"></li>'
         currentOctave++
     }
-    html +=   '</ul>'
+    html += '</ul>'
+
+    if (withShiftButtons) {
+        html = '<div class="keyboardcontainer">\
+        <button type="button" id="lowerOctave">˂</button>'
+            + html +
+            '<button type="button" id="raiseOctave">˃</button>\
+            </div>'
+    }
     return html
 }
 
