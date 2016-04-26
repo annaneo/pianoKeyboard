@@ -3,12 +3,12 @@ body, button{
 	color: #000;
 }
 
-.keyboardcontainer {
+.DA-Keyboardcontainer {
 	width:1000px;
 	padding: 20px;
 }
 
- ul.pianokeyboard {
+ ul.DA-PianoKeyboard {
 	position: relative;
      display: inline-block;
 	height:160px;
@@ -17,7 +17,7 @@ body, button{
 	list-style-type: none;
 }
 
-ul.pianokeyboard li {
+ul.DA-PianoKeyboard li {
 	position: relative;
 	float: left;
 	border-style: solid;
@@ -32,12 +32,12 @@ ul.pianokeyboard li {
     margin-top: 120px;
 }
 
-ul.pianokeyboard li:first-of-type {
+ul.DA-PianoKeyboard li:first-of-type {
 	border-left-width: 2px;
 	border-top-left-radius: 4px;
 }
 
-ul.pianokeyboard li:last-of-type {
+ul.DA-PianoKeyboard li:last-of-type {
 	border-right-width: 2px;
 	border-top-right-radius: 4px;
 }
@@ -106,7 +106,7 @@ ul.pianokeyboard li:last-of-type {
 	padding: 10px;
 }
 
-.keyboardcontainer button {
+.DA-Keyboardcontainer button {
 	display: inline-block;
 	cursor: pointer;
 	background-color: #fff;
@@ -120,7 +120,7 @@ ul.pianokeyboard li:last-of-type {
     height: 160px;
     color: #999;
 	}
-.keyboardcontainer button:hover {
+.DA-Keyboardcontainer button:hover {
     background-color: #eeeeee;
 }
 

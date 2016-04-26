@@ -97,7 +97,7 @@ function htmlForKeyboardWithOctaves(numberOfOctaves, startOctave, showLabels, wi
 
     var currentOctave = _startOctave
     var html = '\
-        <ul class="pianokeyboard">\n'
+        <ul class="DA-PianoKeyboard">\n'
     for (var i = 0; i < _displayedOctaves; i++) {
         if (showLabels) {
             html += '\
@@ -133,7 +133,7 @@ function htmlForKeyboardWithOctaves(numberOfOctaves, startOctave, showLabels, wi
 
     if (withShiftButtons) {
         html = '\
-        <div class="keyboardcontainer">\n\
+        <div class="DA-Keyboardcontainer">\n\
             <button type="button" id="lowerOctave">˂</button>\n'
                 + html + '\n\
             <button type="button" id="raiseOctave">˃</button>\n\
@@ -146,7 +146,7 @@ function htmlForKeyboardWithOctaves(numberOfOctaves, startOctave, showLabels, wi
 
 function bindKeysToFunction(callback) {
 
-    $(".pianokeyboard li").click(function () {
+    $(".DA-PianoKeyboard li").click(function () {
         var indexOfKey = $(this).index()
         var paeNote = paeCodeForKeyAtIndex(indexOfKey, _startOctave, 4)
         callback(paeNote)
