@@ -89,51 +89,55 @@ function htmlForKeyboardWithOctaves(numberOfOctaves, startOctave, showLabels, wi
     if (typeof(numberOfOctaves)==='undefined') numberOfOctaves = 3
     if (typeof(startOctave)==='undefined') startOctave = octaves.C4
     if (typeof(showLabels)==='undefined') showLabels = true
+    if (typeof(withShiftButtons)==='undefined') withShiftButtons = true
 
     //back keys are seperated to fields sharp and flat; this enables specific input
     _displayedOctaves = limitToRange(numberOfOctaves, 0, MAX_OCTAVES)
     _startOctave = limitToRange(startOctave, octaves.C1, octaves.C6)
 
     var currentOctave = _startOctave
-    var html = '<ul class="pianokeyboard">'
+    var html = '\
+        <ul class="pianokeyboard">\n'
     for (var i = 0; i < _displayedOctaves; i++) {
         if (showLabels) {
             html += '\
-            <li class="whiteKey"><p>C' + (currentOctave + 1) + '</p></li>\
-            <li class="blackKeySharp"><p>♯</p></li>\
-            <li class="blackKeyFlat"><p>♭</p></li>'
+            <li class="whiteKey"><p>C' + (currentOctave + 1) + '</p></li>\n\
+            <li class="blackKeySharp"><p>♯</p></li>\n\
+            <li class="blackKeyFlat"><p>♭</p></li>\n'
         } else {
             html += '\
-            <li class="whiteKey"></li>\
-            <li class="blackKeySharp"></li>\
-            <li class="blackKeyFlat"></li>'
+            <li class="whiteKey"></li>\n\
+            <li class="blackKeySharp"></li>\n\
+            <li class="blackKeyFlat"></li>\n'
         }
 
         html += '\
-        <li class="whiteKey"></li>\
-        <li class="blackKeySharp"></li>\
-        <li class="blackKeyFlat"></li>\
-        <li class="whiteKey"></li>\
-        <li class="whiteKey"></li>\
-        <li class="blackKeySharp"></li>\
-        <li class="blackKeyFlat"></li>\
-        <li class="whiteKey"></li>\
-        <li class="blackKeySharp"></li>\
-        <li class="blackKeyFlat"></li>\
-        <li class="whiteKey"></li>\
-        <li class="blackKeySharp"></li>\
-        <li class="blackKeyFlat"></li>\
-        <li class="whiteKey"></li>'
+            <li class="whiteKey"></li>\n\
+            <li class="blackKeySharp"></li>\n\
+            <li class="blackKeyFlat"></li>\n\
+            <li class="whiteKey"></li>\n\
+            <li class="whiteKey"></li>\n\
+            <li class="blackKeySharp"></li>\n\
+            <li class="blackKeyFlat"></li>\n\
+            <li class="whiteKey"></li>\n\
+            <li class="blackKeySharp"></li>\n\
+            <li class="blackKeyFlat"></li>\n\
+            <li class="whiteKey"></li>\n\
+            <li class="blackKeySharp"></li>\n\
+            <li class="blackKeyFlat"></li>\n\
+            <li class="whiteKey"></li>\n'
         currentOctave++
     }
-    html += '</ul>'
+    html += '\
+        </ul>\n'
 
     if (withShiftButtons) {
-        html = '<div class="keyboardcontainer">\
-        <button type="button" id="lowerOctave">˂</button>'
-            + html +
-            '<button type="button" id="raiseOctave">˃</button>\
-            </div>'
+        html = '\
+        <div class="keyboardcontainer">\n\
+            <button type="button" id="lowerOctave">˂</button>\n'
+                + html + '\n\
+            <button type="button" id="raiseOctave">˃</button>\n\
+        </div>\n'
     }
     return html
 }
