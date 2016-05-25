@@ -131,29 +131,40 @@ ul.DA-PianoKeyboard li:last-of-type {
 /* Notes Selection */
 
 #DA-NoteSelection {
-
-    margin-left: 200px;
+    display: inline-block;
+    margin-left: 50px;
     height: 40px;
 }
 
-#DA-NoteSelection input[type=radio] {
+.DA-NoteClefSelection input[type=radio] {
     display: none;
+    margin: 0px
 }
 
-#DA-NoteSelection input[type=radio] + label {
+.DA-NoteClefSelection input[type=radio] + label {
+    font: 16px Lucida Sans, Trebuchet MS, Tahoma, sans-serif;
     display: inline-block;
     background: #fff;
     color: #000;
     padding: 10px;
     border: 2px solid #000;
     border-radius: 2px;
+    margin-left: -6px; /* There is some margin, which I don't know where it comes from... */
 }
 
-#DA-NoteSelection input[type=radio]:checked + label {
+.DA-NoteClefSelection input[type=radio]:checked + label {
     background: #666666;
     color: #eeeeee;
 }
 
 
+/* Clef Selection */
+
+#DA-ClefSelection {
+
+    display: inline-block;
+    margin-left: 200px;
+    height: 40px;
+}
 
 

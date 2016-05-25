@@ -17,18 +17,28 @@
 				var keyboardHTML = htmlForKeyboardWithOctaves(3, octaves.C4, true, true)
 				$(".keyboardContainer").html(keyboardHTML)
 				bindKeysToFunction(updatePreview)
+				bindClefSelectionToFunction(updatePreviewWithClef)
+				setSelectedClef(clefs.G4)
 			})
 
 			var paeCode = "";
+
             function updatePreview(sender, paeNote) {
 				console.log("key pressed is " + paeNote)
 				paeCode += paeNote
 
                 var notesSVG = svgNotesForPlaineEasieCode(paeCode)
-
                 var svgContainerDiv = $('.incipitSVG')
                 svgContainerDiv.html(notesSVG)
             }
+
+			function updatePreviewWithClef(sender, clef) {
+				console.log("clef changed to " + clef)
+
+				var notesSVG = svgNotesForPlaineEasieCode(paeCode, clef)
+				var svgContainerDiv = $('.incipitSVG')
+				svgContainerDiv.html(notesSVG)
+			}
 
 		</script>
 

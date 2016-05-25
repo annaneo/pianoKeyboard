@@ -13,13 +13,37 @@ var octaves = {
     C7 : 6  //''''
 }
 
+var clefs = {
+    G4 : 'G-2',
+    F3 : 'F-4'
+}
 
 var MAX_OCTAVES =  octaves.C7;
 var KEYS_PER_OCTAVE = 17;
 var _displayedOctaves = 3;
 var _startOctave = 3;
+var _selectedClef = clefs.G4
 
 var verovioToolkit = new verovio.toolkit();
+
+
+function getSelectedClef() {
+    return _selectedClef
+}
+
+function setSelectedClef(newClef) {
+    var isF3 = newClef == clefs.F3
+    var isG4 = newClef == clefs.G4
+    if (!isF3 && !isG4) {
+        console.log("Keyboard > setSelectedClef > clef not in predefined values")
+    }
+    _selectedClef = newClef
+
+    var radioGroup = $('input[name="clef"]')
+    radioGroup.val([_selectedClef]); //this does not work. dont know why
+
+    return _selectedClef
+}
 
 function numberOfDisplayedOctaves() {
     return _displayedOctaves
@@ -56,8 +80,10 @@ function paeCodeForKeyAtIndex(keyIndex, baseOctave, duration) {
     return note
 }
 
-function svgNotesForPlaineEasieCode(paeCode) {
-    var data = "@clef:" + "G-2" + "\n"
+function svgNotesForPlaineEasieCode(paeCode, clef) {
+    if (typeof(clef)==='undefined') clef = _selectedClef
+
+    var data = "@clef:" + clef + "\n"
     data += "@keysig:" + " " + "\n"
     data += "@timesig:" + " " + "\n"
     console.log("notes " + paeCode)
@@ -87,12 +113,13 @@ function svgNotesForPlaineEasieCode(paeCode) {
 }
 
 
-function htmlForKeyboardWithOctaves(numberOfOctaves, startOctave, showLabels, withShiftButtons, withNoteSelection) {
+function htmlForKeyboardWithOctaves(numberOfOctaves, startOctave, showLabels, withShiftButtons, withNoteSelection, withClefSelection) {
     if (typeof(numberOfOctaves)==='undefined') numberOfOctaves = 3
     if (typeof(startOctave)==='undefined') startOctave = octaves.C4
     if (typeof(showLabels)==='undefined') showLabels = true
     if (typeof(withShiftButtons)==='undefined') withShiftButtons = true
     if (typeof(withNoteSelection)==='undefined') withNoteSelection = true
+    if (typeof(withClefSelection)==='undefined') withClefSelection = true
 
     //back keys are seperated to fields sharp and flat; this enables specific input
     _displayedOctaves = limitToRange(numberOfOctaves, 1, MAX_OCTAVES)
@@ -146,18 +173,38 @@ function htmlForKeyboardWithOctaves(numberOfOctaves, startOctave, showLabels, wi
     html += '\
         </div>'
 
+
     if (withNoteSelection) {
-        html = htmlForNotesAndKeySelection() + '\n' + html
+        html = htmlForNotesSelection() + '\n' + html
     }
-    
+    if (withClefSelection) {
+        html = htmlForClefSelection() + '\n' + html
+    }
+
     return html
 }
 
 
-function htmlForNotesAndKeySelection() {
+function htmlForClefSelection() {
     var html = ''
+
     html += '\n\
-    <div id="DA-NoteSelection">\n\
+    <div id="DA-ClefSelection" class="DA-NoteClefSelection">\n\
+        <input type="radio" name="clef" id="clef-g" value="G-2">\n\
+        <label for="clef-g" >&#x1d11e;</label>\n\
+        \
+        <input type="radio" name="clef" id="clef-f" value="F-4">\n\
+        <label for="clef-f" >&#x1d122;</label>\n\
+    </div>\n\n'
+
+    return html
+}
+
+function htmlForNotesSelection() {
+    var html = ''
+
+    html += '\n\
+    <div id="DA-NoteSelection" class="DA-NoteClefSelection">\n\
         <input type="radio" name="notes" id="note-1-1" value="1">\n\
         <label for="note-1-1" >1/1</label>\n\
         \
@@ -181,6 +228,22 @@ function htmlForNotesAndKeySelection() {
 }
 
 
+
+
+function bindClefSelectionToFunction(callback) {
+
+    $("#DA-ClefSelection input").click(function () {
+
+        var selectedRadioBox = $("#DA-ClefSelection input[type='radio']:checked")
+        if (selectedRadioBox.length > 0) {
+            _selectedClef = selectedRadioBox.val();
+        }
+
+        callback(this, _selectedClef)
+    })
+    
+}
+
 function bindKeysToFunction(callback) {
 
     $(".DA-PianoKeyboard li").click(function () {
@@ -195,7 +258,7 @@ function bindKeysToFunction(callback) {
         var paeNote = paeCodeForKeyAtIndex(indexOfKey, _startOctave, noteDuration)
         callback(this, paeNote)
     })
-    
+
 }
 
 function raiseOctave() {
