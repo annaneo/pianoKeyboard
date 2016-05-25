@@ -127,3 +127,33 @@ ul.DA-PianoKeyboard li:last-of-type {
     background-color: #fff;
 }
 
+
+/* Notes Selection */
+
+#DA-NoteSelection {
+
+    margin-left: 200px;
+    height: 40px;
+}
+
+#DA-NoteSelection input[type=radio] {
+    display: none;
+}
+
+#DA-NoteSelection input[type=radio] + label {
+    display: inline-block;
+    background: #fff;
+    color: #000;
+    padding: 10px;
+    border: 2px solid #000;
+    border-radius: 2px;
+}
+
+#DA-NoteSelection input[type=radio]:checked + label {
+    background: #666666;
+    color: #eeeeee;
+}
+
+
+
+

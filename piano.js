@@ -51,6 +51,8 @@ function paeCodeForKeyAtIndex(keyIndex, baseOctave, duration) {
         duration + "B"]
     var note = notes[keyIndex % KEYS_PER_OCTAVE]
     note = octaveSign + note
+    console.log("paeCode = " + note)
+
     return note
 }
 
@@ -85,33 +87,35 @@ function svgNotesForPlaineEasieCode(paeCode) {
 }
 
 
-function htmlForKeyboardWithOctaves(numberOfOctaves, startOctave, showLabels, withShiftButtons) {
+function htmlForKeyboardWithOctaves(numberOfOctaves, startOctave, showLabels, withShiftButtons, withNoteSelection) {
     if (typeof(numberOfOctaves)==='undefined') numberOfOctaves = 3
     if (typeof(startOctave)==='undefined') startOctave = octaves.C4
     if (typeof(showLabels)==='undefined') showLabels = true
     if (typeof(withShiftButtons)==='undefined') withShiftButtons = true
+    if (typeof(withNoteSelection)==='undefined') withNoteSelection = true
 
     //back keys are seperated to fields sharp and flat; this enables specific input
     _displayedOctaves = limitToRange(numberOfOctaves, 1, MAX_OCTAVES)
     _startOctave = limitToRange(startOctave, octaves.C1, octaves.C6)
 
     var currentOctave = _startOctave
-    var html = '\
+
+    var keyhoardHTML = '\
         <ul class="DA-PianoKeyboard">\n'
     for (var i = 0; i < _displayedOctaves; i++) {
         if (showLabels) {
-            html += '\
+            keyhoardHTML += '\
             <li class="whiteKey"><p>C' + (currentOctave + 1) + '</p></li>\n\
             <li class="blackKeySharp"><p>♯</p></li>\n\
             <li class="blackKeyFlat"><p>♭</p></li>\n'
         } else {
-            html += '\
+            keyhoardHTML += '\
             <li class="whiteKey"></li>\n\
             <li class="blackKeySharp"></li>\n\
             <li class="blackKeyFlat"></li>\n'
         }
 
-        html += '\
+        keyhoardHTML += '\
             <li class="whiteKey"></li>\n\
             <li class="blackKeySharp"></li>\n\
             <li class="blackKeyFlat"></li>\n\
@@ -128,27 +132,67 @@ function htmlForKeyboardWithOctaves(numberOfOctaves, startOctave, showLabels, wi
             <li class="whiteKey"></li>\n'
         currentOctave++
     }
-    html += '\
+    keyhoardHTML += '\
         </ul>\n'
 
+    var html = '\
+        <div class="DA-Keyboardcontainer">'
     if (withShiftButtons) {
-        html = '\
-        <div class="DA-Keyboardcontainer">\n\
+        html += '\
             <button type="button" id="lowerOctave" onclick="lowerOctave()">˂</button>\n'
-                + html + '\n\
-            <button type="button" id="raiseOctave" onclick="raiseOctave()">˃</button>\n\
-        </div>\n'
+                + keyhoardHTML + '\n\
+            <button type="button" id="raiseOctave" onclick="raiseOctave()">˃</button>\n'
     }
+    html += '\
+        </div>'
+
+    if (withNoteSelection) {
+        html = htmlForNotesAndKeySelection() + '\n' + html
+    }
+    
     return html
 }
 
+
+function htmlForNotesAndKeySelection() {
+    var html = ''
+    html += '\n\
+    <div id="DA-NoteSelection">\n\
+        <input type="radio" name="notes" id="note-1-1" value="1">\n\
+        <label for="note-1-1" >1/1</label>\n\
+        \
+        <input type="radio" name="notes" id="note-1-2" value="2">\n\
+        <label for="note-1-2" >1/2</label>\n\
+        \
+        <input type="radio" name="notes" id="note-1-4" checked value="4">\n\
+        <label for="note-1-4" >1/4</label>\n\
+        \
+        <input type="radio" name="notes" id="note-1-8" value="8">\n\
+        <label for="note-1-8" >1/8</label>\n\
+        \
+        <input type="radio" name="notes" id="note-1-16" value="6">\n\
+        <label for="note-1-16" >1/16</label>\n\
+        \
+        <input type="radio" name="notes" id="note-1-32" value="3">\n\
+        <label for="note-1-32" >1/32</label>\n\
+    </div>'
+
+    return html
+}
 
 
 function bindKeysToFunction(callback) {
 
     $(".DA-PianoKeyboard li").click(function () {
         var indexOfKey = $(this).index()
-        var paeNote = paeCodeForKeyAtIndex(indexOfKey, _startOctave, 4)
+
+        var noteDuration = 4;
+        var selectedRadioBox = $("#DA-NoteSelection input[type='radio']:checked")
+        if (selectedRadioBox.length > 0) {
+            noteDuration = selectedRadioBox.val();
+        }
+
+        var paeNote = paeCodeForKeyAtIndex(indexOfKey, _startOctave, noteDuration)
         callback(this, paeNote)
     })
     
