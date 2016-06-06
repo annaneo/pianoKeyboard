@@ -1,5 +1,14 @@
 /**
- * Created by gaby on 22/04/16.
+ * Copyright notice
+ *
+ * (c) 2016
+ * Anna Neovesky  Anna.Neovesky@adwmainz.de
+ * Gabriel Reimers g.a.reimers@gmail.com
+ *
+ * Digital Academy www.digitale-akademie.de
+ * Academy of Sciences and Literatur | Mainz www.adwmainz.de
+ *
+ * Licensed under The MIT License (MIT)
  */
 
 
@@ -24,7 +33,7 @@ var _displayedOctaves = 3;
 var _startOctave = 3;
 var _selectedClef = clefs.G4
 
-var verovioToolkit = new verovio.toolkit();
+var verovioToolkit = new verovio.toolkit()
 
 
 function getSelectedClef() {
@@ -80,33 +89,40 @@ function paeCodeForKeyAtIndex(keyIndex, baseOctave, duration) {
     return note
 }
 
-function svgNotesForPlaineEasieCode(paeCode, clef) {
+function svgNotesForPlaineEasieCode(paeCode, clef, width, scalePercent) {
     if (typeof(clef)==='undefined') clef = _selectedClef
+    if (typeof(width)==='undefined') width = 400
+    if (typeof(scalePercent)==='undefined') scalePercent = 20
+
+    if (scalePercent < 5) {
+        console.log("svgNotesForPlaineEasieCode > your scale is very low. It should be between 5 and 100")
+    }
+
+    if (width < 100) {
+        console.log("svgNotesForPlaineEasieCode > your width is very low. Notes may be cut off.")
+    }
 
     var data = "@clef:" + clef + "\n"
     data += "@keysig:" + " " + "\n"
     data += "@timesig:" + " " + "\n"
-    console.log("notes " + paeCode)
     data += "@data:" + paeCode
 
-    var windowWidth = $(window).width()
-    console.log("Window Width: " + windowWidth)
-    var scale = 50
-    if (windowWidth < 1000) {
-        scale = 30
-    } else if (windowWidth < 500) {
-        scale = 15
-    }
 
-    options = JSON.stringify({
+    
+    console.log("svgNotesForPlaineEasieCode > data: \n" + data)
+    var pageWidth = width * 100/scalePercent //so the resulting width of the SVG element is always as defined in width
+
+    var options = JSON.stringify({
         inputFormat: 'pae',
         pageHeight: 500,
-        pageWidth: windowWidth * (1 / scale),
+        pageWidth: pageWidth,
         ignoreLayout: 1,
         border: 0,
-        scale: scale,
+        scale: scalePercent,
         adjustPageHeight: 1
     })
+    console.log("svgNotesForPlaineEasieCode > options: \n" + options)
+
 
     var notesSVG = verovioToolkit.renderData(data, options);
     return notesSVG
