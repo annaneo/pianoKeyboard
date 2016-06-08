@@ -185,6 +185,8 @@ function htmlForKeyboardWithOctaves(numberOfOctaves, startOctave, showLabels, wi
             <button type="button" id="lowerOctave" onclick="lowerOctave()">˂</button>\n'
                 + keyhoardHTML + '\n\
             <button type="button" id="raiseOctave" onclick="raiseOctave()">˃</button>\n'
+    } else {
+        html +=  keyhoardHTML
     }
     html += '\
         </div>'

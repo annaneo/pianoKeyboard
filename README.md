@@ -10,13 +10,14 @@ You can embed the piano in your website with only a few lines of JavaScript. The
 The keyboard and the Verovio Toolkit work on any recent browser (for Internet Explorer version 10 is required).
 
 ## Installation
-For the piano display you only need the `piano.js` file and jQuery.
+For the piano display you  ned the `piano.js` and `piano_style.css` files and jQuery.
 If you want to display the played notes in musical notation, you also need to reference the [Verovio Toolkit](http://www.verovio.org/download.xhtml).
 
 Embed it like this:
 
 ```HTML
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+<link rel="stylesheet" href="piano_style.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 <script src="http://www.verovio.org/javascript/latest/verovio-toolkit.js"></script> <!--Only needed for notes display-->
 <script src="piano.js"></script>
 ```
@@ -29,7 +30,7 @@ The Piano can be displayed inside any container with enough size.
 Add an empty `div for the piano and one for the notes display:
 
 ```HTML
-<div id="keyboardContainer"><!-- this will hold the keyboard -->
+<div id="keyboardContainer"></div><!-- this will hold the keyboard -->
 <div id="svgNotesContainer"></div><!-- this will hold the SVG with rendered notes -->
 ```
 
@@ -53,27 +54,28 @@ You can now have the keyboard rendered inside that div:
     })
 
     //this stores all keyboard input
-    var plaineEasieCode = ""
+    var plaineEasieCodes = []
+    var selectedClef = clefs.G4
 
     //this is called whenever a piano key is pressed
-    function updatePreview(sender, paeNote) {
+    function updatePreviewWithNote(sender, paeNote) {
         console.log("key pressed is " + paeNote)
-        plaineEasieCode += paeNote
-
-        //render the notes to an SVG using the Verovio tookit
-        //width of the svg is 800px and note scaling 50%
-        var notesSVG = svgNotesForPlaineEasieCode(plaineEasieCode, clefs.G4, 800, 50)
-        //insert thes SVG code in our div
-        var svgContainerDiv = $('#svgNotesContainer')
-        svgContainerDiv.html(notesSVG)
+        plaineEasieCodes.push(paeNote)
+        updateNotesSVG()
     }
 
     //this is called when the user changes the clef for display
     function updatePreviewWithClef(sender, clef) {
         console.log("clef changed to " + clef)
+        selectedClef = clef
+        updateNotesSVG()
+    }
 
-        //update the SVG with the new clef
-        var notesSVG = svgNotesForPlaineEasieCode(plaineEasieCode, clef, 800, 50)
+    function updateNotesSVG() {
+        //render the notes to an SVG using the Verovio tookit
+        //width of the svg is 800px and note scaling 50%
+        var notesSVG = svgNotesForPlaineEasieCode(plaineEasieCodes.join(), selectedClef, 800, 50)
+        //insert thes SVG code in our div
         var svgContainerDiv = $('#svgNotesContainer')
         svgContainerDiv.html(notesSVG)
     }
@@ -81,11 +83,9 @@ You can now have the keyboard rendered inside that div:
 </script>
 ```
 
-This creates a piano keyboard in the `keyboardContainer` and adds a callback function `updatePreview` that is called whenever a key is pressed on the keyboard.
-The `updatePreview()` function takes the last played note in Plaine and Easie format and appends it to the `plaineEasieCode` string. That string is sent to the `svgNotesForPlaineEasieCode()` function, which returns the notes rendered as SVG. We put these in the
+This creates a piano keyboard in the `keyboardContainer` and adds a callback function `updatePreviewWithNote()` that is called whenever a key is pressed on the keyboard.
 
-We will now add notes display. Update the `updatePreview function as follows`:
-
+The `updatePreviewWithNote()` function takes the last played note in Plaine and Easie format and appends it to the `plaineEasieCodes` array. In the `updateNotesSVG()` the codes in that array are joined to a single string and sent to the `svgNotesForPlaineEasieCode()` function.
 
 The `svgNotesForPlaineEasieCode` function takes a Plaine & Easie code and returns the notes rendered in SVG format using the Verovio Toolkit. We then put this in our `notesSVG` div.
 
@@ -151,7 +151,15 @@ With the following options:
 * `width`: Number - Sets the width of the created SVG canvas
 * `scalePercent`: Number - The scale (= size) of the rendered notes. This is a percent value. For most cases between 20 and 80
 
+### Layout and Styling
+The most part of the styling happens in the `piano_style.css`. You can overwrite the style or change them directly to change the appearance of the keyboard.
 
+
+## Known Issues
+### Keyboard size
+Currently the keyboard / key size is set fixed in the `piano_style.css`.
+
+If you have an idea how to make the keyboard scale depending on its container size, please create a pull request.
 
 # Contribution
 This framework is license under MIT License.
