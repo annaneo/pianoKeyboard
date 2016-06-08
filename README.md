@@ -74,7 +74,7 @@ You can now have the keyboard rendered inside that div:
     function updateNotesSVG() {
         //render the notes to an SVG using the Verovio tookit
         //width of the svg is 800px and note scaling 50%
-        var notesSVG = svgNotesForPlaineEasieCode(plaineEasieCodes.join(), selectedClef, 800, 50)
+        var notesSVG = svgNotesForPlaineEasieCode(plaineEasieCodes.join(""), selectedClef, 800, 50)
         //insert thes SVG code in our div
         var svgContainerDiv = $('#svgNotesContainer')
         svgContainerDiv.html(notesSVG)
