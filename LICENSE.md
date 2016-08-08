@@ -1,6 +1,11 @@
 The MIT License (MIT)
 
-Copyright (c) 2016 
+Copyright (c) 2016
+Anna Neovesky  Anna.Neovesky@adwmainz.de
+Gabriel Reimers g.a.reimers@gmail.com
+Digital Academy www.digitale-akademie.de
+Academy of Sciences and Literatur | Mainz www.adwmainz.de
+
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

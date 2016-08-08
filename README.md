@@ -161,7 +161,10 @@ Currently the keyboard / key size is set fixed in the `piano_style.css`.
 
 If you have an idea how to make the keyboard scale depending on its container size, please create a pull request.
 
-# Contribution
+# License and Contribution
+pianoKeyboard was developed by Anna Neovesky and 
+Gabriel Reimers at the [Digital Academy](https://www.digitale-akademie.de) of the [Academy of Sciences and Literatur | Mainz](https://www.adwmainz.de)
+ 
 This framework is license under MIT License.
 Any contributions in form of bug reports or pull requests are welcome.
 
