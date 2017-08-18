@@ -1,6 +1,6 @@
 # pianoKeyboard
 A flexible virtual piano keyboard based on HTML, CSS and JavaScript.
-You can embed the piano in your website with only a few lines of JavaScript. The piano will create [Plaie and Easie](http://www.iaml.info/plaine-easie-code) music code and can render it to a SVG displaying the played notes using the great [Verovio Toolkit](http://www.verovio.org/download.xhtml).
+You can embed the piano in your website with only a few lines of JavaScript. The piano will create [Plaine & Easie](http://www.iaml.info/plaine-easie-code) music code and can render it to a SVG displaying the played notes using the great [Verovio Toolkit](http://www.verovio.org/download.xhtml).
 
 ![Screenshot of Virtual Piano Keyboard](piano_screenshot.png "Screenshot of Virtual Piano Keyboard")
 
