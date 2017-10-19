@@ -7,7 +7,8 @@
 ul.DA-PianoKeyboard {
     position: relative;
     display: inline-block;
-    height:160px;
+    height: 160px;
+    min-width: 226px;
     padding: 0;
     cursor: pointer;
     list-style-type: none;
