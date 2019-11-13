@@ -221,30 +221,29 @@ function htmlForClefSelection() {
 function htmlForNotesSelection() {
     var html = ''
 
-    html += '\n\
-    <div id="DA-NoteSelection" class="DA-NoteClefSelection">\n\
-        <input type="radio" name="notes" id="note-1-1" value="1">\n\
-        <label for="note-1-1" >1/1</label>\n\
-        \
-        <input type="radio" name="notes" id="note-1-2" value="2">\n\
-        <label for="note-1-2" >1/2</label>\n\
-        \
-        <input type="radio" name="notes" id="note-1-4" checked value="4">\n\
-        <label for="note-1-4" >1/4</label>\n\
-        \
-        <input type="radio" name="notes" id="note-1-8" value="8">\n\
-        <label for="note-1-8" >1/8</label>\n\
-        \
-        <input type="radio" name="notes" id="note-1-16" value="6">\n\
-        <label for="note-1-16" >1/16</label>\n\
-        \
-        <input type="radio" name="notes" id="note-1-32" value="3">\n\
-        <label for="note-1-32" >1/32</label>\n\
-    </div>'
+    html += 
+    '<div id="DA-NoteSelection" class="DA-NoteClefSelection">'+
+        '<input type="radio" name="notes" id="note-1-1" value="1">'+
+        '<label for="note-1-1" >1/1</label>'+
+
+        '<input type="radio" name="notes" id="note-1-2" value="2">'+
+        '<label for="note-1-2" >1/2</label>'+
+
+        '<input type="radio" name="notes" id="note-1-4" checked value="4">'+
+        '<label for="note-1-4" >1/4</label>'+
+
+        '<input type="radio" name="notes" id="note-1-8" value="8">'+
+        '<label for="note-1-8" >1/8</label>'+
+
+        '<input type="radio" name="notes" id="note-1-16" value="6">'+
+        '<label for="note-1-16" >1/16</label>'+
+        
+        '<input type="radio" name="notes" id="note-1-32" value="3">'+
+        '<label for="note-1-32" >1/32</label>'+
+    '</div>'
 
     return html
 }
-
 
 
 
