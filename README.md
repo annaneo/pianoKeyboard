@@ -154,13 +154,6 @@ With the following options:
 ### Layout and Styling
 The most part of the styling happens in the `piano_style.css`. You can overwrite the style or change them directly to change the appearance of the keyboard.
 
-
-## Known Issues
-### Keyboard size
-Currently the keyboard / key size is set fixed in the `piano_style.css`.
-
-If you have an idea how to make the keyboard scale depending on its container size, please create a pull request.
-
 # License and Contribution
 pianoKeyboard was developed by Anna Neovesky and 
 Gabriel Reimers at the [Digital Academy](https://www.digitale-akademie.de) of the [Academy of Sciences and Literatur | Mainz](https://www.adwmainz.de)
