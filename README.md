@@ -1,6 +1,6 @@
 # pianoKeyboard
 A flexible virtual piano keyboard based on HTML, CSS and JavaScript.
-You can embed the piano in your website with only a few lines of JavaScript. The piano will create [Plaie and Easie](http://www.iaml.info/plaine-easie-code) music code and can render it to a SVG displaying the played notes using the great [Verovio Toolkit](http://www.verovio.org/download.xhtml).
+You can embed the piano in your website with only a few lines of JavaScript. The piano will create music as [Plaine & Easie Code](https://www.iaml.info/plaine-easie-code) and can render it to a SVG displaying the played notes using the great [Verovio Toolkit](https://www.verovio.org/download.xhtml).
 
 ![Screenshot of Virtual Piano Keyboard](piano_screenshot.png "Screenshot of Virtual Piano Keyboard")
 
@@ -11,14 +11,14 @@ The keyboard and the Verovio Toolkit work on any recent browser (for Internet Ex
 
 ## Installation
 For the piano display you  ned the `piano.js` and `piano_style.css` files and jQuery.
-If you want to display the played notes in musical notation, you also need to reference the [Verovio Toolkit](http://www.verovio.org/download.xhtml).
+If you want to display the played notes in musical notation, you also need to reference the [Verovio Toolkit](https://www.verovio.org/download.xhtml).
 
 Embed it like this:
 
 ```HTML
 <link rel="stylesheet" href="piano_style.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-<script src="http://www.verovio.org/javascript/latest/verovio-toolkit.js"></script> <!--Only needed for notes display-->
+<script src="https://www.verovio.org/javascript/latest/verovio-toolkit.js"></script> <!--Only needed for notes display-->
 <script src="piano.js"></script>
 ```
 
@@ -85,7 +85,7 @@ You can now have the keyboard rendered inside that div:
 
 This creates a piano keyboard in the `keyboardContainer` and adds a callback function `updatePreviewWithNote()` that is called whenever a key is pressed on the keyboard.
 
-The `updatePreviewWithNote()` function takes the last played note in Plaine and Easie format and appends it to the `plaineEasieCodes` array. In the `updateNotesSVG()` the codes in that array are joined to a single string and sent to the `svgNotesForPlaineEasieCode()` function.
+The `updatePreviewWithNote()` function takes the last played note in Plaine & Easie Code and appends it to the `plaineEasieCodes` array. In the `updateNotesSVG()` the codes in that array are joined to a single string and sent to the `svgNotesForPlaineEasieCode()` function.
 
 The `svgNotesForPlaineEasieCode` function takes a Plaine & Easie code and returns the notes rendered in SVG format using the Verovio Toolkit. We then put this in our `notesSVG` div.
 
@@ -105,7 +105,7 @@ With the following options:
 * `showLabels`: Bool - default true. Sets whether the first keys of each octave have labels indicating their pitch
 * `withShiftButtons`: Bool - default true. Sets whether on the left and right side of the keyboard arrows buttons are displayed for the user to shift octaves up or down
 * `withNoteSelection`: Bool - default true. Sets whether buttons are displayed to select the note length (like half, quarter, eigth, etc.)
-* `withClefSelection`: Bool - default true. Sets whether a button is displayed to switch between bass and violin clef (this is only relevant for display and does not affect the Plaine and Easie code)
+* `withClefSelection`: Bool - default true. Sets whether a button is displayed to switch between bass and violin clef (this is only relevant for display and does not affect the Plaine & Easie Code)
 
 To actually react on pressed keys you need to register a callback function that is called when a key is pressed. For example:
 ```JavaScript
@@ -118,7 +118,7 @@ function updatePreview(sender, paeNote) {
     console.log(paeNote)
 }
 ```
-The `sender` is the dom object that was clicked by the user. The `paeNote` is the Plaine And Easie code of the pressed key.
+The `sender` is the dom object that was clicked by the user. The `paeNote` is the Plaine & Easie Code of the pressed key.
 
 
 You also need to register a callback function for when the user changes the clef (if you have clef selection activated). For example:
@@ -137,7 +137,7 @@ The `sender` is the dom object that was clicked by the user. The `clef` is the n
 Usually both callback functions are used to re-render the displayed notes but could also be used to play sounds, for insance. (Midi sounds can be generated with the Verovio Toolkit)
 
 ### Notes rendering
-The `piano.js` offers a convenience function to render the Plaine And Easie code to a SVG with musical notation. That function `svgNotesForPlaineEasieCode()` encapsulates the Verovio Toolkit. You can of course use the [Verovio Toolkit directly](http://www.verovio.org/javascript.xhtml), which gives you more control about display.
+The `piano.js` offers a convenience function to render the Plaine & Easie Code to a SVG with musical notation. That function `svgNotesForPlaineEasieCode()` encapsulates the Verovio Toolkit. You can of course use the [Verovio Toolkit directly](https://www.verovio.org/javascript.xhtml), which gives you more control about display.
 
 To conveniently render notes in SVG use the following function:
 
@@ -146,7 +146,7 @@ function svgNotesForPlaineEasieCode(paeCode, clef, width, scalePercent)
 ```
 With the following options:
 
-* `paeCode`: String. The Plaine and Easie code to render
+* `paeCode`: String. The Plaine & Easie Code to render
 * `clef`: String. The clef to use. Recommended to use the `clefs` object to select a like `clefs.G4`
 * `width`: Number - Sets the width of the created SVG canvas
 * `scalePercent`: Number - The scale (= size) of the rendered notes. This is a percent value. For most cases between 20 and 80
@@ -168,7 +168,7 @@ Gabriel Reimers at the [Digital Academy](https://www.digitale-akademie.de) of th
 This framework is license under MIT License.
 Any contributions in form of bug reports or pull requests are welcome.
 
-The [Verovio Framework](https://github.com/rism-ch/verovio) is developed by the [Swiss RISM Office](http://rism-ch.org/), licensed under LGPL and is not affiliated with this project.
+The [Verovio Framework](https://github.com/rism-ch/verovio) is developed by the [RISM Digital Center](https://rism.digital/), licensed under LGPL and is not affiliated with this project.
 
 
 
